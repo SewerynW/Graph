@@ -1,6 +1,6 @@
 # Graph
 
-> Graph that shows the daily variation of the dollar comparing with peso for the year 2018 and 2019.
+> Chart that shows the daily variation of the dollar comparing with peso for the year 2018 and 2019.
 
 ## Build Setup
 
