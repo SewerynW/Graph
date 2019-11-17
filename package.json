@@ -1,5 +1,5 @@
 {
-  "name": "Graph",
+  "name": "Chart",
   "version": "1.0.0",
   "description": "Graph that shows the daily variation of the dollar comparing with peso for the year 2018 and 2019.",
   "author": "Seweryn",
@@ -13,8 +13,10 @@
     "test": "jest"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.3.6",
+    "chart.js": "^2.9.3",
     "nuxt": "^2.0.0",
-    "@nuxtjs/axios": "^5.3.6"
+    "vue-chartjs": "^3.5.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^1.0.1",
