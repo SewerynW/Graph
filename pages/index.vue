@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <Header />
     <lineChart
       v-if="loaded"
       :chartData="chartData"
@@ -11,10 +12,12 @@
 
 <script>
 import LineChart from '@/components/LineChart'
+import Header from '@/components/Header'
 
 export default {
   components: {
-    LineChart
+    LineChart,
+    Header
   },
 
   data() {
@@ -71,6 +74,7 @@ export default {
 .container {
   height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   .chart {
