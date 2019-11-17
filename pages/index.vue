@@ -34,18 +34,25 @@ export default {
           {
             label: 'Data One',
             backgroundColor: '#f87979',
-            data: [40, 45, 10, 40, 39, 80, 40]
-          },
-          {
-            label: 'Difference',
-            backgroundColor: '#f87979',
-            data: [40, 45, 10, 40, 39, 80, 40]
+            data: [40, 45, 10, -30, -5, 40, 39, 80, 40]
           }
         ]
       },
       chartOptions: {
         responsive: true,
-        maintainAspectRatio: false
+        maintainAspectRatio: false,
+        tooltips: {
+          callbacks: {
+            label: (tooltipItem, data) => {
+              console.log('Item z wykresu.', tooltipItem)
+              console.log('index itemu.', tooltipItem.index)
+              console.log('data', data.datasets[0].data)
+              return `wcześniejszy ${
+                data.datasets[0].data[tooltipItem.index - 1]
+              }`
+            }
+          }
+        }
       }
     }
   },
@@ -55,7 +62,7 @@ export default {
     setTimeout(() => {
       console.log('Done')
       this.loaded = true
-    }, 3000)
+    }, 2000)
   }
 }
 </script>
