@@ -15,12 +15,12 @@ export const getters = {
     return tp
   },
 
-  convertInfo: (state) => {
-    const tp = state.currencyInformation.map((day) => {
+  transformedInformacton: ({ currencyInformation }) => {
+    const tp = currencyInformation.map(({ fecha, valor, variation }) => {
       return {
-        date: new Date(day.fecha.slice(0, 10)),
-        value: Number(day.valor),
-        variation: Number(day.variation)
+        date: new Date(fecha.slice(0, 10)),
+        value: Number(valor),
+        variation: Number(variation)
       }
     })
     return tp.reverse()
@@ -33,22 +33,20 @@ export const mutations = {
   },
 
   countVariation: (state) => {
-    const tpRate = state.currencyInformation.map((day) => day.valor)
+    const tpRates = state.currencyInformation.map((day) => day.valor)
     const tp = state.currencyInformation.map((day, index) => {
-      const tpNumber = (day.valor - tpRate[index + 1]).toPrecision(2)
+      const tpNumber = (day.valor - tpRates[index + 1]).toPrecision(2)
       return {
         ...day,
         variation: tpNumber
       }
     })
-
     state.currencyInformation = tp
   }
 }
 
 export const actions = {
   async getCurrencyInfo({ commit }) {
-    console.log('robie zapytanie do API')
     const data2019 = await this.$axios.$get(
       'https://mindicador.cl/api/dolar/2019'
     )
@@ -56,7 +54,6 @@ export const actions = {
       'https://mindicador.cl/api/dolar/2018'
     )
     const tp = [...data2019.serie, ...data2018.serie]
-
     await commit('setCurrencyInfo', tp)
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div ref="chartdiv" class="hello"></div>
+  <div ref="chartdiv" class="chart"></div>
 </template>
 
 <script>
@@ -13,8 +13,7 @@ export default {
     const chart = am4core.create(this.$refs.chartdiv, am4charts.XYChart)
 
     chart.paddingRight = 20
-    chart.data = this.$store.getters.convertInfo
-    console.log(this.$store.getters.convertInfo)
+    chart.data = this.$store.getters.transformedInformacton
 
     const dateAxis = chart.xAxes.push(new am4charts.DateAxis())
     dateAxis.renderer.grid.template.location = 0
@@ -40,29 +39,10 @@ export default {
     })
 
     chart.cursor = new am4charts.XYCursor()
-    // chart.cursor.xAxis = dateAxis
-    // chart.cursor.snapToSeries = series
 
     const scrollbarX = new am4charts.XYChartScrollbar()
     scrollbarX.series.push(series)
     chart.scrollbarX = scrollbarX
-
-    // Set up cursor's events to update the label
-    // chart.cursor.events.on('cursorpositionchanged', (ev) => {
-    //   const dataItem = dateAxis.getSeriesDataItem(
-    //     series,
-    //     dateAxis.toAxisPosition(chart.cursor.xPosition),
-    //     true
-    //   )
-    // const prevDataItem = chart.data[dataItem.index - 1]
-
-    // dataItem.nowy = prevDataItem.value
-    // series.dataFields.now = prevDataItem.value
-
-    // console.log('najechany item', dataItem)
-    // console.log('poprzedni item', prevDataItem)
-    // console.log('poprzedni item', this.currseDifference)
-    // })
 
     this.chart = chart
   },
@@ -75,7 +55,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.hello {
+.chart {
   width: 100%;
   height: 500px;
   padding: 1em;
