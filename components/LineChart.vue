@@ -9,14 +9,14 @@ export default {
       type: Object,
       default: null
     },
-    chartOptions: {
+    options: {
       type: Object,
       default: null
     }
   },
 
   mounted() {
-    this.renderChart(this.chartData, this.chartOptions)
+    this.renderChart(this.chartData, this.options)
   }
 }
 </script>
