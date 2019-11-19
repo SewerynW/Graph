@@ -1,25 +1,30 @@
 <template>
   <div class="container">
     <Header />
-    <div class="chartContainer">
+    <!-- <div class="chartContainer">
       <line-chart
         v-if="loaded"
         :chartData="chartData"
         :options="chartOptions"
         class="chart"
       />
+    </div> -->
+    <div class="amchart">
+      <am-chart></am-chart>
     </div>
   </div>
 </template>
 
 <script>
-import LineChart from '@/components/LineChart'
+// import LineChart from '@/components/LineChart'
 import Header from '@/components/Header'
+import AmChart from '@/components/AmChart'
 
 export default {
   components: {
-    LineChart,
-    Header
+    // LineChart,
+    Header,
+    AmChart
   },
 
   data() {
@@ -35,9 +40,9 @@ export default {
         tooltips: {
           callbacks: {
             label: (tooltipItem, data) => {
-              console.log('Item z wykresu.', tooltipItem)
-              console.log('index itemu.', tooltipItem.index)
-              console.log('data', data.datasets[0].data)
+              // console.log('Item z wykresu.', tooltipItem)
+              // console.log('index itemu.', tooltipItem.index)
+              // console.log('data', data.datasets[0].data)
               return `wcześniejszy ${
                 data.datasets[0].data[tooltipItem.index - 1]
               }`
@@ -48,44 +53,28 @@ export default {
     }
   },
 
-  // options: {
-  //   responsive: true,
-  //   maintainAspectRatio: false,
-  //   tooltips: {
-  //     callbacks: {
-  //       label: (tooltipItem, data) => {
-  //         console.log('Item z wykresu.', tooltipItem)
-  //         console.log('index itemu.', tooltipItem.index)
-  //         console.log('data', data.datasets[0].data)
-  //         return `wcześniejszy ${
-  //           data.datasets[0].data[tooltipItem.index - 1]
-  //         }`
-  //       }
-  //     }
-  //   }
-  // }
-
   computed: {
-    currencyRate() {
-      const tp = this.$store.getters.currencyRate
-      console.log('cosss', tp)
-      return tp
-    }
+    // currencyRate() {
+    //   const tp = this.$store.getters.currencyRate
+    //   console.log('cosss', tp)
+    //   return tp
+    // }
   },
   async fetch({ store }) {
-    await store.dispatch('getExchangeRate')
+    await store.dispatch('getCurrencyInfo')
+    await store.commit('countVariation')
   },
 
   mounted() {
     this.fillData()
-    console.log('data z API', this.$store.getters.currencyDate)
-    console.log(typeof this.$store.getters.currencyDate)
+    // console.log('data z API', this.$store.getters.currencyDate)
+    // console.log(typeof this.$store.getters.currencyDate)
   },
 
   methods: {
     fillData() {
       this.loaded = false
-      console.log(this.chartData)
+      // console.log(this.chartData)
       this.chartData = {
         labels: this.$store.getters.currencyDate,
         datasets: [
@@ -98,7 +87,7 @@ export default {
           }
         ]
       }
-      console.log(this.chartData)
+      // console.log(this.chartData)
       this.loaded = true
     }
   }
@@ -107,7 +96,7 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  height: 100vh;
+  // height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -115,7 +104,7 @@ export default {
   .chartContainer {
     position: relative;
     overflow-x: scroll;
-    width: 100%;
+    width: 95%;
     .chart {
       background-color: #212733;
       border-radius: 0.5em;
@@ -123,6 +112,11 @@ export default {
       width: 100%;
       min-width: 100%;
     }
+  }
+
+  .amchart {
+    height: 35em;
+    width: 95%;
   }
 }
 </style>
