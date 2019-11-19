@@ -1,27 +1,10 @@
 <template>
   <header class="header">
-    <h1>{{ text }}</h1>
+    <h1>Siemano</h1>
   </header>
 </template>
 <script>
-export default {
-  //   data() {
-  //     return {
-  //       text: this.$store.state.text
-  //     }
-  //   },
-  computed: {
-    text() {
-      return this.$store.state.text
-    }
-  },
-
-  mounted() {
-    setTimeout(() => {
-      this.$store.commit('add')
-    }, 5000)
-  }
-}
+export default {}
 </script>
 <style lang="scss" scoped>
 .header {
