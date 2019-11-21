@@ -7,8 +7,12 @@ You can check it on: https://friendly-lumiere-3c36e8.netlify.com/
 ## Build Setup
 
 ```bash
+
+# download project
+$ git clone https://github.com/SewerynW/Graph.git
+
 # install dependencies
-$ npm run install
+$ npm install
 
 # serve with hot reload at localhost:3000
 $ npm run dev
