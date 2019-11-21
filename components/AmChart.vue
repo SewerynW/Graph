@@ -31,7 +31,7 @@ export default {
     series.tooltipText = ``
     series.adapter.add('tooltipText', (text, target) => {
       const data = target.tooltipDataItem.dataContext
-      text = ` 
+      text = `
       [bold]Rate: {valueY.value}
       ----------------
       [bold]Variation: ${data.variation}`

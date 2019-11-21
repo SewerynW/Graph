@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export const state = () => ({
   currencyInformation: []
 })
@@ -47,13 +49,11 @@ export const mutations = {
 
 export const actions = {
   async getCurrencyInfo({ commit }) {
-    const data2019 = await this.$axios.$get(
-      'https://mindicador.cl/api/dolar/2019'
-    )
-    const data2018 = await this.$axios.$get(
-      'https://mindicador.cl/api/dolar/2018'
-    )
-    const tp = [...data2019.serie, ...data2018.serie]
-    await commit('setCurrencyInfo', tp)
+    const data2019 = await axios.get('https://mindicador.cl/api/dolar/2019')
+    const data2018 = await axios.get('https://mindicador.cl/api/dolar/2018')
+    await commit('setCurrencyInfo', [
+      ...data2019.data.serie,
+      ...data2018.data.serie
+    ])
   }
 }
