@@ -1,5 +1,28 @@
 body {
-  background-color: #8b3734;
   margin: 0;
   box-sizing: border-box;
+  animation: colorChange 50s infinite;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+@keyframes colorChange {
+  0% {
+    background: #9b59b6;
+  }
+
+  25% {
+    background: #f1c40f;
+  }
+
+  50% {
+    background: #3498db;
+  }
+
+  75% {
+    background: #1abc9c;
+  }
+
+  100% {
+    background: #9b59b6;
+  }
 }

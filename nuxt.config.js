@@ -27,7 +27,10 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [
+    { src: '~/plugins/amCharts.js', mode: 'client' },
+    { src: '~/plugins/amCharts.js', mode: 'server' }
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -55,5 +58,7 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {}
+
+    // transpile: ['@amcharts/amcharts4']
   }
 }
